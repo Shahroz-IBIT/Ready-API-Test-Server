@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ready-api-testserver-samples</artifactId>
+        <groupId>com.smartbear.readyapi</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>ready-api-testserver-maven-plugin-sample</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Ready! API TestServer Maven Sample</name>
+
+    <properties>
+        <testserver.user>demoUser</testserver.user>
+        <testserver.password>demoPassword</testserver.password>
+        <testserver.host>http://testserver.readyapi.io:8080</testserver.host>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.smartbear.readyapi</groupId>
+                <artifactId>testserver-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <username>${testserver.user}</username>
+                    <password>${testserver.password}</password>
+                    <server>${testserver.host}</server>
+
+                    <properties>
+                        <apitest.host>https://api.swaggerhub.com</apitest.host>
+                    </properties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>run</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                        <version>1.7.12</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
